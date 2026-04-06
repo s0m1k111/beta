@@ -1,0 +1,36 @@
+[
+  {
+    "id": "u_d51472e2",
+    "email": "test@mail.com",
+    "username": "Pavel",
+    "password": "$2b$10$wRJ3wBdPN3cAoE7cf4HZEOk4wjj2tTR6DnEp8QGUOiFMJ8nQgQYkm",
+    "avatar": null,
+    "createdAt": 1773966243671,
+    "friends": [],
+    "incomingRequests": [
+      "u_1ff36bb3"
+    ],
+    "outgoingRequests": []
+  },
+  {
+    "id": "u_1ff36bb3",
+    "email": "newuser@mail.com",
+    "username": "Pavel2",
+    "password": "$2b$10$k14p2nUbrr7n3D9237ZQQ.A/L80YbnnvKFD6zG1lQXyGRsLv83UdG",
+    "avatar": null,
+    "createdAt": 1773967113880,
+    "friends": [],
+    "incomingRequests": [],
+    "outgoingRequests": [
+      "u_d51472e2"
+    ]
+  },
+  {
+    "id": "u_35b8d8e3",
+    "email": "testik@gmail.com",
+    "username": "testik",
+    "password": "$2b$10$ctv/HkwS0nDRKiieUcHEUOGVaqQOqGzkXnrq67Q65SoYTQDDNae32",
+    "avatar": null,
+    "createdAt": 1774286524806
+  }
+]

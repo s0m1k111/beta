@@ -1,0 +1,173 @@
+[
+  {
+    "id": "chat_amo00mw4",
+    "members": [
+      "u_d51472e2",
+      "u_1ff36bb3"
+    ],
+    "messages": [
+      {
+        "id": "msg_11k64xok",
+        "senderId": "u_d51472e2",
+        "text": "Привет, это тестовое сообщение!",
+        "timestamp": 1774217611664
+      },
+      {
+        "id": "msg_6dr3pngy",
+        "senderId": "u_d51472e2",
+        "text": "Сообщение 1",
+        "timestamp": 1774217830861
+      },
+      {
+        "id": "msg_rumwrlco",
+        "senderId": "u_d51472e2",
+        "text": "Сообщение 2",
+        "timestamp": 1774217837690
+      },
+      {
+        "id": "msg_a0r950u1",
+        "senderId": "u_d51472e2",
+        "text": "привет",
+        "timestamp": 1775064752637
+      },
+      {
+        "id": "msg_eg6jizhe",
+        "senderId": "u_d51472e2",
+        "text": "что",
+        "timestamp": 1775064758331
+      },
+      {
+        "id": "msg_ztyfc8vb",
+        "senderId": "u_1ff36bb3",
+        "text": "ого",
+        "timestamp": 1775064835735
+      },
+      {
+        "id": "msg_1r8mr6y4",
+        "senderId": "u_d51472e2",
+        "text": "я рад что это работает",
+        "timestamp": 1775064974783
+      },
+      {
+        "id": "msg_q1eit16r",
+        "senderId": "u_d51472e2",
+        "text": "проверка",
+        "timestamp": 1775065281513
+      },
+      {
+        "id": "msg_ws7hzh31",
+        "senderId": "u_d51472e2",
+        "text": "sfs",
+        "timestamp": 1775065460504
+      },
+      {
+        "id": "msg_sun6h1o0",
+        "senderId": "u_d51472e2",
+        "text": "sfsf",
+        "timestamp": 1775065882507
+      },
+      {
+        "id": "msg_l60sqbp2",
+        "senderId": "u_d51472e2",
+        "text": "qwe",
+        "timestamp": 1775148553606
+      },
+      {
+        "id": "msg_xvw01qq6",
+        "senderId": "u_d51472e2",
+        "text": "фыв",
+        "timestamp": 1775148556744
+      },
+      {
+        "id": "msg_aeagjqmf",
+        "senderId": "u_d51472e2",
+        "text": "qwe",
+        "timestamp": 1775148559763
+      },
+      {
+        "id": "msg_wsyuimc9",
+        "senderId": "u_d51472e2",
+        "text": "asd",
+        "timestamp": 1775148563329
+      },
+      {
+        "id": "msg_6nfzwxx7",
+        "senderId": "u_d51472e2",
+        "text": "asd",
+        "timestamp": 1775148565268
+      },
+      {
+        "id": "msg_z943qwnn",
+        "senderId": "u_d51472e2",
+        "text": "aasd",
+        "timestamp": 1775148584501
+      },
+      {
+        "id": "msg_ih7fma2j",
+        "senderId": "u_d51472e2",
+        "text": "asd",
+        "timestamp": 1775148587289
+      },
+      {
+        "id": "msg_x00zhl71",
+        "senderId": "u_d51472e2",
+        "text": "qwe",
+        "timestamp": 1775148592010
+      },
+      {
+        "id": "msg_j3h8oyoo",
+        "senderId": "u_d51472e2",
+        "text": "asd",
+        "timestamp": 1775148595884
+      },
+      {
+        "id": "msg_88yo5bqf",
+        "senderId": "u_d51472e2",
+        "text": "test",
+        "timestamp": 1775148604644
+      },
+      {
+        "id": "msg_czg0gbfc",
+        "senderId": "u_d51472e2",
+        "text": "sex",
+        "timestamp": 1775148608380
+      },
+      {
+        "id": "msg_w8clg9gy",
+        "senderId": "u_d51472e2",
+        "text": "фыв",
+        "timestamp": 1775148781232
+      },
+      {
+        "id": "msg_7fdvmhtt",
+        "senderId": "u_d51472e2",
+        "text": "qwe",
+        "timestamp": 1775148787074
+      },
+      {
+        "id": "msg_162m6uub",
+        "senderId": "u_d51472e2",
+        "text": "sfds",
+        "timestamp": 1775148949995
+      },
+      {
+        "id": "msg_ygurhuq6",
+        "senderId": "u_d51472e2",
+        "text": "wefwrffwrf",
+        "timestamp": 1775148970652
+      },
+      {
+        "id": "msg_05vuecyu",
+        "senderId": "u_d51472e2",
+        "text": "sdfs",
+        "timestamp": 1775149014439
+      },
+      {
+        "id": "msg_15vasrhw",
+        "senderId": "u_d51472e2",
+        "text": "sfs",
+        "timestamp": 1775149116991
+      }
+    ]
+  }
+]

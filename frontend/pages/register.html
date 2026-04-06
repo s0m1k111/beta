@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <button id="themeToggle" class="theme-toggle">Тема</button>
+
+    <div class="auth-container">
+      <div class="auth-box">
+        <h2>Регистрация</h2>
+
+        <form id="registerForm">
+          <input id="email" type="email" placeholder="Email" required />
+          <input id="username" type="text" placeholder="Логин" required />
+          <input id="password" type="password" placeholder="Пароль" required />
+          <button type="submit">Создать аккаунт</button>
+        </form>
+
+        <div class="link">Уже есть аккаунт? <a href="login.html">Войти</a></div>
+      </div>
+    </div>
+
+    <script type="module" src="../js/theme.js"></script>
+    <script type="module" src="../js/register.js"></script>
+  </body>
+</html>
