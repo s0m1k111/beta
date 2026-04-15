@@ -1,6 +1,11 @@
 const userService = require("./userService");
 const friendService = require("../friends/friendService");
 
+let io = null;
+function setIo(ioRef) {
+  io = ioRef;
+}
+
 async function getProfile(req, res) {
   try {
     const user = req.user; // authCheck уже положил сюда данные
@@ -81,9 +86,42 @@ async function searchUsers(req, res) {
   }
 }
 
+async function uploadAvatar(req, res) {
+  try {
+    const userId = req.user.id;
+    const file = req.file;
+
+    if (!file) {
+      return res.status(400).json({ error: "Файл не загружен" });
+    }
+
+    // Формируем URL-путь
+    const avatarUrl = `/uploads/avatars/${file.filename}`;
+
+    const updatedUser = await userService.updateUser(userId, {
+      avatar: avatarUrl,
+    });
+
+    // Broadcast: аватар обновлён
+    if (io) {
+      io.emit("userAvatarUpdated", {
+        userId: updatedUser.id,
+        avatar: avatarUrl,
+      });
+    }
+
+    res.json({ user: updatedUser });
+  } catch (err) {
+    console.error("uploadAvatar error:", err);
+    res.status(500).json({ error: "Ошибка загрузки аватара" });
+  }
+}
+
 module.exports = {
   getProfile,
   updateProfile,
   getUserById,
   searchUsers,
+  uploadAvatar,
+  setIo,
 };

@@ -4,7 +4,7 @@
     "email": "test@mail.com",
     "username": "Pavel",
     "password": "$2b$10$wRJ3wBdPN3cAoE7cf4HZEOk4wjj2tTR6DnEp8QGUOiFMJ8nQgQYkm",
-    "avatar": null,
+    "avatar": "/uploads/avatars/1775685330030-306317457.jpg",
     "createdAt": 1773966243671,
     "friends": [],
     "incomingRequests": [
@@ -17,7 +17,7 @@
     "email": "newuser@mail.com",
     "username": "Pavel2",
     "password": "$2b$10$k14p2nUbrr7n3D9237ZQQ.A/L80YbnnvKFD6zG1lQXyGRsLv83UdG",
-    "avatar": null,
+    "avatar": "/uploads/avatars/1775861731639-503030017.jpg",
     "createdAt": 1773967113880,
     "friends": [],
     "incomingRequests": [],

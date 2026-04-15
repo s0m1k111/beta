@@ -1,5 +1,5 @@
 import { register } from "./api/auth.js";
-import { saveToken } from "./utils/storage.js";
+import { saveToken, saveUserId } from "./utils/storage.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("registerForm");
@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (result.token) {
       saveToken(result.token);
+      saveUserId(result.user.id);
       window.location.href = "chat.html";
     } else {
       alert(result.error || "Ошибка регистрации");

@@ -1,0 +1,40 @@
+<div id="videos"></div>
+<button id="join">Join</button>
+<button id="leave">Leave</button>
+<button id="mute">Mute</button>
+<button id="screen">Share screen</button>
+
+<script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+<script type="module">
+  import { WebRTCManager } from "./webrtcManager.js"; // если сделаешь ES-модуль
+
+  const socket = io("http://localhost:4000");
+  const roomId = "voice-room-1";
+
+  let manager = null;
+  let muted = false;
+
+  document.getElementById("join").onclick = async () => {
+    if (!manager) {
+      manager = new WebRTCManager({
+        socket,
+        roomId,
+        localMediaConstraints: { audio: true, video: false } // голосовой канал
+      });
+    }
+    await manager.join();
+  };
+
+  document.getElementById("leave").onclick = () => {
+    if (manager) manager.leave();
+  };
+
+  document.getElementById("mute").onclick = () => {
+    muted = !muted;
+    if (manager) manager.toggleMute(muted);
+  };
+
+  document.getElementById("screen").onclick = async () => {
+    if (manager) await manager.startScreenShare();
+  };
+</script>

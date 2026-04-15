@@ -359,3 +359,32 @@ body {
   position: sticky;
   bottom: 0;
 }
+
+/* ------------------------------ */
+/*      КРАСИВЫЙ СКРОЛЛ ЧАТА      */
+/* ------------------------------ */
+
+#messagesWrapper {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: var(--jp-accent) var(--jp-panel);
+}
+
+/* Chrome / Edge */
+#messagesWrapper::-webkit-scrollbar {
+  width: 8px;
+}
+
+#messagesWrapper::-webkit-scrollbar-track {
+  background: var(--jp-panel);
+  border-radius: 10px;
+}
+
+#messagesWrapper::-webkit-scrollbar-thumb {
+  background: var(--jp-accent);
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+#messagesWrapper::-webkit-scrollbar-thumb:hover {
+  background: #b83a3a; /* чуть темнее акцент */
+}

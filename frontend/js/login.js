@@ -1,5 +1,5 @@
 import { login } from "./api/auth.js";
-import { saveToken } from "./utils/storage.js";
+import { saveToken, saveUserId } from "./utils/storage.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("loginForm");
@@ -14,7 +14,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (result.token) {
       saveToken(result.token);
-      window.location.href = "chat.html";
+      saveUserId(result.user.id);
+      window.location.href = "server.html";
     } else {
       alert(result.error || "Неверный email или пароль");
     }

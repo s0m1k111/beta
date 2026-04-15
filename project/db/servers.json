@@ -1,0 +1,135 @@
+[
+  {
+    "id": "srv_ey47902u",
+    "name": "pukachy",
+    "icon": null,
+    "ownerId": "u_d51472e2",
+    "members": [
+      {
+        "userId": "u_d51472e2",
+        "role": "owner",
+        "joinedAt": 1775514453774
+      },
+      {
+        "userId": "u_1ff36bb3",
+        "role": "member",
+        "joinedAt": 1775516186978
+      }
+    ],
+    "channels": [
+      {
+        "id": "ch_c745dose",
+        "name": "general",
+        "type": "text",
+        "createdAt": 1775514453774
+      },
+      {
+        "id": "ch_x9ugjyd2",
+        "name": "1",
+        "type": "text",
+        "createdAt": 1775516076270
+      },
+      {
+        "id": "ch_sxo0tmxd",
+        "name": "2",
+        "type": "text",
+        "createdAt": 1775669201563
+      },
+      {
+        "id": "ch_0d675l0o",
+        "name": "3",
+        "type": "text",
+        "createdAt": 1775684498642
+      },
+      {
+        "id": "ch_660fkyvn",
+        "name": "4",
+        "type": "text",
+        "createdAt": 1775861751668
+      },
+      {
+        "id": "ch_vjvrv1nc",
+        "name": "5",
+        "type": "text",
+        "createdAt": 1776270344544
+      }
+    ],
+    "roles": [
+      {
+        "name": "owner",
+        "color": "#d64545",
+        "permissions": [
+          "all"
+        ]
+      },
+      {
+        "name": "admin",
+        "color": "#e0a030",
+        "permissions": [
+          "manage_channels",
+          "kick",
+          "ban",
+          "manage_messages"
+        ]
+      },
+      {
+        "name": "member",
+        "color": "#808080",
+        "permissions": [
+          "send_messages",
+          "view_channels"
+        ]
+      }
+    ],
+    "createdAt": 1775514453774
+  },
+  {
+    "id": "srv_nld2ckxs",
+    "name": "kek",
+    "icon": null,
+    "ownerId": "u_1ff36bb3",
+    "members": [
+      {
+        "userId": "u_1ff36bb3",
+        "role": "owner",
+        "joinedAt": 1775514798097
+      }
+    ],
+    "channels": [
+      {
+        "id": "ch_4tw8l0zd",
+        "name": "general",
+        "type": "text",
+        "createdAt": 1775514798097
+      }
+    ],
+    "roles": [
+      {
+        "name": "owner",
+        "color": "#d64545",
+        "permissions": [
+          "all"
+        ]
+      },
+      {
+        "name": "admin",
+        "color": "#e0a030",
+        "permissions": [
+          "manage_channels",
+          "kick",
+          "ban",
+          "manage_messages"
+        ]
+      },
+      {
+        "name": "member",
+        "color": "#808080",
+        "permissions": [
+          "send_messages",
+          "view_channels"
+        ]
+      }
+    ],
+    "createdAt": 1775514798097
+  }
+]

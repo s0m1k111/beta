@@ -8,4 +8,13 @@ export function getToken() {
 
 export function clearToken() {
   localStorage.removeItem("token");
+  localStorage.removeItem("userId");
+}
+
+export function saveUserId(id) {
+  localStorage.setItem("userId", id);
+}
+
+export function getUserId() {
+  return localStorage.getItem("userId");
 }

@@ -10,6 +10,50 @@ body {
   color: #3a3a3a;
 }
 
+/* ------------------------------ */
+/*       КАСТОМНЫЙ СКРОЛЛБАР      */
+/* ------------------------------ */
+
+/* Для Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
+  transition: background 0.2s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #aaa;
+}
+
+/* Для Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #ccc transparent;
+}
+
+/* Тёмная тема скроллбара */
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: #444;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: #666;
+}
+
+[data-theme="dark"] * {
+  scrollbar-color: #444 transparent;
+}
+
 /* Мягкие тени в японском стиле */
 .shadow-soft {
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
@@ -22,6 +66,112 @@ body {
   --jp-paper: #f4f1ea;
   --jp-ink: #3a3a3a;
   --jp-hover: #efe9e2;
+}
+
+/* ТЁМНАЯ ТЕМА */
+[data-theme="dark"] {
+  --jp-red: #e05555;
+  --jp-beige: #404040;
+  --jp-paper: #1a1a1a;
+  --jp-ink: #f0f0f0;
+  --jp-hover: #2a2a2a;
+}
+
+[data-theme="dark"] body {
+  background: #0d0d0d;
+  color: var(--jp-ink);
+}
+
+[data-theme="dark"] .chat-item {
+  background: #1a1a1a;
+  border-color: #404040;
+}
+
+[data-theme="dark"] .chat-item:hover {
+  background: var(--jp-hover);
+}
+
+[data-theme="dark"] #chatList {
+  background: #111;
+  border-right-color: #404040;
+}
+
+[data-theme="dark"] #chatWindow {
+  background: #0d0d0d;
+}
+
+[data-theme="dark"] #chatWindow h2 {
+  color: var(--jp-red);
+}
+
+[data-theme="dark"] #messages {
+  background: transparent;
+}
+
+[data-theme="dark"] .message {
+  background: #1a1a1a;
+  border-color: #404040;
+  color: var(--jp-ink);
+}
+
+[data-theme="dark"] .message.right {
+  background: #2d1a1a;
+  border-color: #5a2020;
+  align-self: flex-end;
+}
+
+[data-theme="dark"] .message.left {
+  background: #1a1a1a;
+  align-self: flex-start;
+}
+
+[data-theme="dark"] .message strong {
+  color: var(--jp-red);
+}
+
+[data-theme="dark"] #inputArea {
+  background: #111;
+  border-top-color: #404040;
+}
+
+[data-theme="dark"] #messageInput {
+  background: #1a1a1a;
+  border-color: #404040;
+  color: var(--jp-ink);
+}
+
+[data-theme="dark"] #sendBtn {
+  background: var(--jp-red);
+}
+
+[data-theme="dark"] .theme-toggle {
+  background: #1a1a1a;
+  border-color: #404040;
+  color: var(--jp-ink);
+}
+
+[data-theme="dark"] .theme-toggle:hover {
+  background: var(--jp-hover);
+}
+
+/* Кнопка темы */
+.theme-toggle {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  z-index: 100;
+  padding: 8px 16px;
+  border: 1px solid var(--jp-beige);
+  border-radius: 8px;
+  background: var(--jp-paper);
+  color: var(--jp-ink);
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.25s;
+}
+
+.theme-toggle:hover {
+  background: var(--jp-hover);
 }
 
 /* ------------------------------ */
@@ -41,6 +191,24 @@ body {
   border-right: 1px solid var(--jp-beige);
   padding: 15px;
   overflow-y: auto;
+}
+
+.back-link {
+  display: block;
+  text-align: center;
+  padding: 8px;
+  margin-bottom: 12px;
+  color: var(--jp-red);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  border: 1px solid var(--jp-beige);
+  border-radius: 8px;
+  transition: 0.2s;
+}
+
+.back-link:hover {
+  background: var(--jp-hover);
 }
 
 /* Элемент чата */
@@ -78,6 +246,8 @@ body {
 /* ------------------------------ */
 
 #messages {
+  display: flex;
+  flex-direction: column;
   margin-top: 25px;
 }
 
@@ -90,6 +260,59 @@ body {
   margin-bottom: 18px;
   max-width: 60%;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  /* Перенос длинных слов */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+  /* Для аватарки */
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.msg-avatar-mini {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #ccc;
+  background-size: cover;
+  background-position: center;
+  flex-shrink: 0;
+}
+
+.msg-content {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Своё сообщение — справа */
+.message.right {
+  margin-left: auto;
+  background: #fff5f5;
+  border-color: #f0c0c0;
+  align-self: flex-end;
+}
+
+/* Чужое сообщение — слева */
+.message.left {
+  margin-right: auto;
+  background: white;
+  border-color: var(--jp-beige);
+  align-self: flex-start;
+}
+
+/* Время сообщения */
+.msg-time {
+  display: block;
+  font-size: 10px;
+  color: #999;
+  margin-top: 4px;
+  text-align: right;
+}
+
+.message.right .msg-time {
+  color: #c88;
 }
 
 /* Имя отправителя */
@@ -98,6 +321,58 @@ body {
   margin-bottom: 6px;
   color: var(--jp-red);
   font-size: 14px;
+}
+
+/* ------------------------------ */
+/*       ПОЛЕ ВВОДА И КНОПКА      */
+/* ------------------------------ */
+
+#inputArea {
+  display: flex;
+  gap: 10px;
+  padding: 15px 25px;
+  border-top: 1px solid var(--jp-beige);
+  background: var(--jp-paper);
+}
+
+#messageInput {
+  flex: 1;
+  padding: 12px 16px;
+  border: 1px solid var(--jp-beige);
+  border-radius: 10px;
+  background: white;
+  color: var(--jp-ink);
+  font-size: 15px;
+  outline: none;
+  transition: 0.25s;
+}
+
+#messageInput:focus {
+  border-color: var(--jp-red);
+  box-shadow: 0 0 6px rgba(214, 69, 69, 0.3);
+}
+
+#sendBtn {
+  padding: 12px 24px;
+  background: var(--jp-red);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+#sendBtn:hover {
+  background: #b83a3a;
+}
+
+/* ------------------------------ */
+/*            УТИЛИТЫ             */
+/* ------------------------------ */
+
+.hidden {
+  display: none !important;
 }
 
 /* ------------------------------ */
@@ -195,4 +470,1302 @@ body {
 
 .auth-box .link a:hover {
   text-decoration: underline;
+}
+
+/* ============================== */
+/*      DISCORD-ПОДОБНЫЙ UI       */
+/* ============================== */
+
+#serverApp {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* --- Список серверов (левая панель иконок) --- */
+#serverList {
+  width: 72px;
+  background: #202225;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 0;
+  gap: 8px;
+  overflow-y: auto;
+}
+
+[data-theme="dark"] #serverList {
+  background: #111;
+}
+
+.server-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #36393f;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-radius 0.2s, background 0.2s;
+  background-size: cover;
+  background-position: center;
+}
+
+.server-icon:hover {
+  border-radius: 16px;
+  background-color: var(--jp-red);
+}
+
+.server-icon.active {
+  border-radius: 16px;
+  background-color: var(--jp-red);
+}
+
+.server-icon--add {
+  background: #36393f;
+  color: #43b581;
+  font-size: 28px;
+  transition: 0.2s;
+}
+
+.server-icon--add:hover {
+  background: #43b581;
+  color: #fff;
+}
+
+.server-divider {
+  width: 32px;
+  height: 2px;
+  background: #42464d;
+  margin: 4px 0;
+}
+
+/* --- Список каналов --- */
+#channelList {
+  width: 240px;
+  background: #2f3136;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+[data-theme="dark"] #channelList {
+  background: #1a1a1a;
+}
+
+.server-nav {
+  padding: 8px;
+  border-bottom: 1px solid #202225;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.server-nav-link,
+.server-nav-btn {
+  padding: 8px 12px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 13px;
+  cursor: pointer;
+  border: none;
+  transition: background 0.15s;
+  text-align: left;
+}
+
+.server-nav-link {
+  color: #8e9297;
+  background: transparent;
+}
+
+.server-nav-link:hover {
+  background: #34373c;
+  color: #dcdde0;
+}
+
+.server-nav-btn {
+  color: #43b581;
+  background: transparent;
+}
+
+.server-nav-btn:hover {
+  background: #34373c;
+  color: #43b581;
+}
+
+.channel-header {
+  padding: 16px;
+  border-bottom: 1px solid #202225;
+}
+
+.channel-header h3 {
+  margin: 0;
+  font-size: 16px;
+  color: #fff;
+}
+
+.channel-header .server-id-hint {
+  font-size: 10px;
+  color: #555;
+  padding: 2px 12px 8px;
+}
+
+.channel-section {
+  padding: 8px;
+}
+
+.channel-section-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: #8e9297;
+  letter-spacing: 0.5px;
+  padding: 4px 8px;
+}
+
+.channel-item {
+  display: flex;
+  align-items: center;
+  padding: 6px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #8e9297;
+  font-size: 14px;
+  transition: background 0.15s, color 0.15s;
+}
+
+.channel-item:hover {
+  background: #34373c;
+  color: #dcdde0;
+}
+
+.channel-item.active {
+  background: #393c43;
+  color: #fff;
+}
+
+.channel-hash {
+  font-size: 18px;
+  font-weight: 400;
+  margin-right: 6px;
+  color: #72767d;
+}
+
+/* --- Окно чата сервера --- */
+#serverChatWindow {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #36393f;
+  min-width: 0;
+}
+
+[data-theme="dark"] #serverChatWindow {
+  background: #0d0d0d;
+}
+
+.chat-body {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.chat-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+}
+
+/* Правая панель — участники */
+#membersPanel {
+  width: 240px;
+  min-width: 240px;
+  background: #2f3136;
+  border-left: 1px solid #202225;
+  overflow-y: auto;
+  padding: 12px 8px;
+}
+
+[data-theme="dark"] #membersPanel {
+  background: #111;
+}
+
+.members-header {
+  font-size: 11px;
+  font-weight: 700;
+  color: #8e9297;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 4px 8px 12px;
+  border-bottom: 1px solid #40444b;
+  margin-bottom: 8px;
+}
+
+.member-section {
+  margin-bottom: 16px;
+}
+
+.member-section-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: #8e9297;
+  padding: 4px 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.member-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.member-item:hover {
+  background: #34373c;
+}
+
+.member-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: #5865f2;
+  background-size: auto;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+  position: relative;
+  flex-shrink: 0;
+  overflow: visible;
+}
+
+.member-avatar.has-image {
+  background-size: cover;
+}
+
+.member-avatar .status-dot {
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid #2f3136;
+  z-index: 2;
+}
+
+[data-theme="dark"] .member-avatar .status-dot {
+  border-color: #111;
+}
+
+.status-dot.online {
+  background: #43b581;
+}
+.status-dot.idle {
+  background: #faa61a;
+}
+.status-dot.dnd {
+  background: #f04747;
+}
+.status-dot.offline {
+  background: #747f8d;
+}
+
+.member-name {
+  font-size: 14px;
+  color: #8e9297;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.member-item:hover .member-name {
+  color: #dcdde0;
+}
+
+.member-name.owner {
+  color: #d64545;
+}
+.member-name.admin {
+  color: #e0a030;
+}
+
+#channelHeader {
+  padding: 12px 16px;
+  border-bottom: 1px solid #202225;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #36393f;
+}
+
+[data-theme="dark"] #channelHeader {
+  background: #1a1a1a;
+}
+
+#channelMessages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 0;
+}
+
+.channel-message {
+  padding: 6px 12px;
+  border-radius: 4px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 14px;
+  transition: background 0.1s;
+}
+
+.ch-avatar-mini {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #ccc;
+  background-size: cover;
+  background-position: center;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.ch-msg-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.channel-message:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="dark"] .channel-message:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.channel-msg-sender {
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.channel-msg-text {
+  color: #dcddde;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.channel-msg-time {
+  font-size: 11px;
+  color: #72767d;
+  margin-left: auto;
+}
+
+#channelInputArea {
+  display: flex;
+  gap: 8px;
+  padding: 16px;
+  background: #36393f;
+  border-top: 1px solid #202225;
+}
+
+[data-theme="dark"] #channelInputArea {
+  background: #1a1a1a;
+}
+
+#channelMessageInput {
+  flex: 1;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 8px;
+  background: #40444b;
+  color: #dcddde;
+  font-size: 14px;
+  outline: none;
+}
+
+[data-theme="dark"] #channelMessageInput {
+  background: #2a2a2a;
+  color: #e0e0e0;
+}
+
+#channelMessageInput:focus {
+  box-shadow: 0 0 0 2px var(--jp-red);
+}
+
+#channelSendBtn {
+  padding: 10px 20px;
+  background: var(--jp-red);
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+#channelSendBtn:hover {
+  background: #b83a3a;
+}
+
+/* --- Модалка --- */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.modal-content {
+  background: #36393f;
+  border-radius: 12px;
+  padding: 24px;
+  width: 400px;
+  max-width: 90%;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] .modal-content {
+  background: #1a1a1a;
+}
+
+.modal-content h2 {
+  margin: 0 0 20px;
+  color: #fff;
+  text-align: center;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #40444b;
+  border-radius: 8px;
+  background: #40444b;
+  color: #dcddde;
+  font-size: 14px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.modal-content input:focus {
+  border-color: var(--jp-red);
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.modal-actions button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.modal-actions button:first-child {
+  background: var(--jp-red);
+  color: #fff;
+}
+
+.modal-actions button:first-child:hover {
+  background: #b83a3a;
+}
+
+.btn-secondary {
+  background: #4f545c;
+  color: #dcddde;
+}
+
+.btn-secondary:hover {
+  background: #686d73;
+}
+
+/* Загрузка изображений */
+.image-upload-label {
+  font-size: 20px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background 0.15s;
+  user-select: none;
+}
+.image-upload-label:hover {
+  background: #40444b;
+}
+
+/* Превью изображения */
+.image-preview {
+  padding: 8px 16px;
+  background: #36393f;
+  border-top: 1px solid #40444b;
+  display: none;
+  align-items: center;
+  gap: 8px;
+}
+.image-preview.show {
+  display: flex;
+}
+.image-preview img {
+  max-height: 80px;
+  border-radius: 8px;
+}
+.image-preview .remove-preview {
+  background: none;
+  border: none;
+  color: #f04747;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Изображение в сообщении */
+.msg-image {
+  max-width: 100%;
+  max-height: 300px;
+  border-radius: 8px;
+  margin-top: 4px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.msg-image:hover {
+  opacity: 0.9;
+  transform: scale(1.01);
+}
+
+/* Индикатор "печатает..." */
+.typing-indicator {
+  font-size: 13px;
+  color: #8e9297;
+  margin-left: 12px;
+  font-style: italic;
+  animation: typingBlink 1.2s infinite;
+}
+@keyframes typingBlink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+/* ============================== */
+/*         СТРАНИЦА ПРОФИЛЯ       */
+/* ============================== */
+
+.profile-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  background: #36393f;
+}
+
+[data-theme="dark"] .profile-container {
+  background: #0d0d0d;
+}
+
+.profile-back {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  color: #8e9297;
+  text-decoration: none;
+  font-size: 14px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: #2f3136;
+  transition: 0.2s;
+}
+
+.profile-back:hover {
+  background: #40444b;
+  color: #fff;
+}
+
+.profile-card {
+  width: 420px;
+  max-width: 95%;
+  background: #2f3136;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .profile-card {
+  background: #1a1a1a;
+}
+
+.profile-banner {
+  height: 100px;
+  background: linear-gradient(135deg, #d64545, #e0a030);
+}
+
+.profile-avatar-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: -40px;
+}
+
+.profile-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #36393f;
+  color: #fff;
+  font-size: 36px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 6px solid #2f3136;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+[data-theme="dark"] .profile-avatar {
+  border-color: #1a1a1a;
+}
+
+/* Статус-индикатор */
+.profile-avatar::after {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 3px solid #2f3136;
+}
+
+[data-theme="dark"] .profile-avatar::after {
+  border-color: #1a1a1a;
+}
+
+.status-online::after {
+  background: #43b581;
+}
+.status-idle::after {
+  background: #faa61a;
+}
+.status-dnd::after {
+  background: #f04747;
+}
+.status-offline::after {
+  background: #747f8d;
+}
+
+.profile-info {
+  padding: 16px 20px 24px;
+  text-align: center;
+}
+
+.profile-info h2 {
+  margin: 0;
+  color: #fff;
+  font-size: 22px;
+}
+
+.profile-email {
+  color: #8e9297;
+  font-size: 13px;
+  margin: 4px 0 20px;
+}
+
+.profile-status-section {
+  margin-bottom: 20px;
+}
+
+.profile-status-section label {
+  display: block;
+  font-size: 12px;
+  color: #8e9297;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.profile-status-section select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #40444b;
+  border-radius: 8px;
+  background: #40444b;
+  color: #dcddde;
+  font-size: 14px;
+  outline: none;
+}
+
+.profile-status-section select:focus {
+  border-color: var(--jp-red);
+}
+
+.profile-bio {
+  margin-bottom: 20px;
+}
+
+.profile-bio label {
+  display: block;
+  font-size: 12px;
+  color: #8e9297;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.profile-bio textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #40444b;
+  border-radius: 8px;
+  background: #40444b;
+  color: #dcddde;
+  font-size: 14px;
+  resize: vertical;
+  outline: none;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.profile-bio textarea:focus {
+  border-color: var(--jp-red);
+}
+
+.profile-bio button {
+  margin-top: 8px;
+  padding: 8px 20px;
+  background: var(--jp-red);
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.profile-bio button:hover {
+  background: #b83a3a;
+}
+
+.profile-stats {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding-top: 16px;
+  border-top: 1px solid #40444b;
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-num {
+  display: block;
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #8e9297;
+}
+
+/* ============================== */
+/*   EDIT/DELETE КНОПКИ           */
+/* ============================== */
+
+.msg-actions,
+.ch-msg-actions {
+  display: none;
+  gap: 4px;
+  margin-left: 8px;
+}
+
+.message:hover .msg-actions,
+.channel-message:hover .ch-msg-actions {
+  display: inline-flex;
+}
+
+.msg-edit-btn,
+.msg-del-btn,
+.ch-msg-edit-btn,
+.ch-msg-del-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+  padding: 0 2px;
+}
+
+.msg-edit-btn:hover,
+.msg-del-btn:hover,
+.ch-msg-edit-btn:hover,
+.ch-msg-del-btn:hover {
+  opacity: 1;
+}
+
+.edited-tag {
+  font-size: 11px;
+  color: #999;
+  font-style: italic;
+}
+
+/* Реакции */
+.msg-reactions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.reaction-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 6px;
+  border-radius: 8px;
+  border: 1px solid #40444b;
+  background: rgba(64, 68, 75, 0.3);
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.15s;
+  line-height: 1;
+}
+
+.reaction-btn:hover {
+  background: rgba(64, 68, 75, 0.6);
+  border-color: #72767d;
+}
+
+.reaction-btn.active {
+  background: rgba(214, 69, 69, 0.2);
+  border-color: var(--jp-red);
+}
+
+.reaction-count {
+  font-size: 11px;
+  color: #8e9297;
+  min-width: 8px;
+}
+
+/* Панель добавления реакции */
+.reaction-picker {
+  display: none;
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  background: #36393f;
+  border: 1px solid #40444b;
+  border-radius: 8px;
+  padding: 4px;
+  gap: 2px;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.reaction-picker.show {
+  display: flex;
+}
+
+.reaction-picker-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: background 0.15s;
+}
+
+.reaction-picker-btn:hover {
+  background: #40444b;
+}
+.mention {
+  background: rgba(214, 69, 69, 0.15);
+  color: var(--jp-red);
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.mention:hover {
+  background: rgba(214, 69, 69, 0.3);
+  text-decoration: underline;
+}
+
+/* ============================== */
+/*   ЗАГРУЗКА АВАТАРОК            */
+/* ============================== */
+
+.avatar-upload-section {
+  margin-top: 16px;
+  text-align: center;
+}
+
+.avatar-upload-section label {
+  display: block;
+  font-size: 12px;
+  color: #8e9297;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.avatar-upload-btn {
+  padding: 8px 16px;
+  background: #40444b;
+  border: 1px dashed #72767d;
+  border-radius: 8px;
+  color: #dcddde;
+  cursor: pointer;
+  font-size: 13px;
+  transition: 0.2s;
+}
+
+.avatar-upload-btn:hover {
+  background: #4f545c;
+  border-color: var(--jp-red);
+}
+
+/* Бейдж непрочитанных */
+.unread-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 9px;
+  background: #d64545;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  margin-left: 6px;
+  line-height: 1;
+}
+
+.channel-item-unread {
+  font-weight: 700;
+  color: #fff;
+}
+
+/* Голосовой канал / демонстрация экрана */
+.voice-panel {
+  margin-top: 16px;
+  padding: 12px;
+  border-top: 1px solid #40444b;
+}
+
+.voice-status {
+  font-size: 12px;
+  color: #43b581;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.voice-controls {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.voice-btn {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background: #4f545c;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.voice-btn:hover {
+  background: #686d73;
+}
+
+.voice-btn.muted {
+  background: #d64545;
+}
+
+.voice-btn.sharing {
+  background: #43b581;
+}
+
+.voice-btn-leave {
+  background: #d64545;
+}
+
+.voice-btn-leave:hover {
+  background: #b83a3a;
+}
+
+.join-voice-btn {
+  display: block;
+  width: calc(100% - 16px);
+  margin: 8px;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 8px;
+  background: #43b581;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.join-voice-btn:hover {
+  background: #3ca374;
+}
+
+/* === Discord-style голосовой звонок === */
+.voice-call-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.voice-call-content {
+  background: #2f3136;
+  border-radius: 16px;
+  width: 600px;
+  max-width: 95vw;
+  max-height: 90vh;
+  overflow: auto;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+}
+
+[data-theme="dark"] .voice-call-content {
+  background: #1a1a1a;
+}
+
+.voice-call-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid #40444b;
+}
+
+.voice-call-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.call-duration {
+  font-size: 14px;
+  color: #8e9297;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Сетка участников */
+.voice-participants-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 12px;
+  padding: 20px;
+  min-height: 200px;
+}
+
+.voice-participant {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 12px;
+  background: #36393f;
+  transition: background 0.2s;
+}
+
+[data-theme="dark"] .voice-participant {
+  background: #2a2a2a;
+}
+
+.voice-participant.speaking {
+  box-shadow: 0 0 0 2px #43b581;
+}
+
+.voice-participant.screen-sharing {
+  display: none;
+}
+
+.participant-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #4f545c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+}
+
+.participant-avatar .status-indicator {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid #36393f;
+}
+
+.participant-avatar .status-indicator.muted {
+  background: #f04747;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+}
+
+.participant-name {
+  font-size: 12px;
+  color: #dcddde;
+  text-align: center;
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Демонстрация экрана */
+.voice-screen-share {
+  padding: 0 20px 20px;
+}
+
+.voice-screen-share video {
+  width: 100%;
+  border-radius: 8px;
+  background: #000;
+}
+
+/* Кнопки */
+.voice-call-actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  padding: 16px 20px 20px;
+  border-top: 1px solid #40444b;
+}
+
+.voice-action-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 50%;
+  background: #4f545c;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  width: 60px;
+  height: 60px;
+}
+
+.voice-action-btn:hover {
+  background: #686d73;
+}
+
+.voice-action-btn:active {
+  transform: scale(0.95);
+}
+
+.voice-action-btn .btn-icon {
+  font-size: 22px;
+  line-height: 1;
+}
+
+.voice-action-btn .btn-label {
+  font-size: 10px;
+  color: #b9bbbe;
+}
+
+.voice-action-btn.muted-btn {
+  background: #f04747;
+}
+
+.voice-action-btn.muted-btn:hover {
+  background: #d63e3e;
+}
+
+.voice-action-btn.sharing-btn {
+  background: #43b581;
+}
+
+.voice-action-btn.sharing-btn:hover {
+  background: #3ca374;
+}
+
+.voice-leave-btn {
+  background: #f04747 !important;
+}
+
+.voice-leave-btn:hover {
+  background: #d63e3e !important;
 }

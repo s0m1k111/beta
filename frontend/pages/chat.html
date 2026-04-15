@@ -3,13 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <title>Чат</title>
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="../style.css" />
+    <script src="https://cdn.socket.io/4.8.3/socket.io.min.js"></script>
   </head>
   <body>
     <button id="themeToggle" class="theme-toggle">Тема</button>
 
     <div id="app">
-      <aside id="chatList"></aside>
+      <aside id="chatList">
+        <a href="server.html" class="back-link">← Серверы</a>
+      </aside>
 
       <main id="chatWindow">
         <div id="chatHeader">

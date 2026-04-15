@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Профиль</title>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    <button id="themeToggle" class="theme-toggle">Тема</button>
+
+    <div class="profile-container">
+      <a href="server.html" class="profile-back">← На серверы</a>
+
+      <div class="profile-card">
+        <div class="profile-banner"></div>
+        <div class="profile-avatar-wrapper">
+          <div id="profileAvatar" class="profile-avatar">?</div>
+        </div>
+
+        <div class="profile-info">
+          <h2 id="profileUsername">Загрузка...</h2>
+          <p id="profileEmail" class="profile-email"></p>
+
+          <div class="profile-status-section">
+            <label>Статус:</label>
+            <select id="statusSelect">
+              <option value="online">🟢 В сети</option>
+              <option value="idle">🟡 Неактивен</option>
+              <option value="dnd">🔴 Не беспокоить</option>
+              <option value="offline">⚫ Невидимка</option>
+            </select>
+          </div>
+
+          <div class="profile-bio">
+            <label>О себе:</label>
+            <textarea id="profileBio" placeholder="Расскажите о себе..." rows="3"></textarea>
+            <button id="saveBioBtn">Сохранить</button>
+          </div>
+
+          <div class="avatar-upload-section">
+            <label>Аватар:</label>
+            <label class="avatar-upload-btn" for="avatarUploadInput">📷 Загрузить аватар</label>
+            <input id="avatarUploadInput" type="file" accept="image/*" hidden />
+          </div>
+
+          <div class="profile-stats">
+            <div class="stat">
+              <span class="stat-num" id="friendsCount">0</span>
+              <span class="stat-label">Друзей</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num" id="serversCount">0</span>
+              <span class="stat-label">Серверов</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="../js/theme.js"></script>
+    <script type="module" src="../js/profile.js"></script>
+  </body>
+</html>

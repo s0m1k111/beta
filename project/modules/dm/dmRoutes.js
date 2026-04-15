@@ -1,19 +1,20 @@
 const express = require("express");
 const router = express.Router();
-
 const authCheck = require("../../middleware/authCheck");
 const dmController = require("./dmController");
 
-// Создать или получить чат
 router.post("/open", authCheck, dmController.openChat);
-
-// Отправить сообщение
 router.post("/send", authCheck, dmController.sendMessage);
-
-// Получить историю сообщений
-router.get("/:chatId/messages", authCheck, dmController.getMessages);
-
-// Получить список чатов
 router.get("/list", authCheck, dmController.listChats);
+
+// Редактирование/удаление — ДО /:chatId
+router.put("/msg/:messageId/edit", authCheck, dmController.editMessage);
+router.delete("/msg/:messageId/delete", authCheck, dmController.deleteMessage);
+
+// Реакции
+router.post("/msg/:messageId/react/:emoji", authCheck, dmController.addReaction);
+router.delete("/msg/:messageId/react/:emoji", authCheck, dmController.removeReaction);
+
+router.get("/:chatId/messages", authCheck, dmController.getMessages);
 
 module.exports = router;

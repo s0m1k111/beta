@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Сервер</title>
+    <link rel="stylesheet" href="../style.css" />
+    <script src="/socket.io/socket.io.js"></script>
+  </head>
+  <body>
+    <button id="themeToggle" class="theme-toggle">Тема</button>
+
+    <div id="serverApp">
+      <!-- Левая панель — иконки серверов -->
+      <aside id="serverList">
+        <a href="chat.html" class="server-icon" title="Личные сообщения" style="color: #d64545; font-size: 18px">💬</a>
+        <div class="server-icon server-icon--add" id="addServerBtn" title="Создать сервер">+</div>
+        <div class="server-divider"></div>
+      </aside>
+
+      <!-- Панель каналов -->
+      <aside id="channelList">
+        <div class="channel-header">
+          <h3>Выберите сервер</h3>
+        </div>
+      </aside>
+
+      <!-- Основная область чата -->
+      <main id="serverChatWindow" class="hidden">
+        <div id="channelHeader" class="channel-header-main">
+          <span class="channel-hash">#</span> general
+          <span id="typingIndicator" class="typing-indicator" style="display: none"></span>
+        </div>
+
+        <div class="chat-body">
+          <div class="chat-main">
+            <div id="channelMessages"></div>
+            <div id="channelInputArea">
+              <label for="imageUploadInput" class="image-upload-label" title="Прикрепить изображение">📷</label>
+              <input id="imageUploadInput" type="file" accept="image/png,image/jpeg,image/gif,image/webp" hidden />
+              <input id="channelMessageInput" type="text" placeholder="Написать в канал..." />
+              <button id="channelSendBtn">Отправить</button>
+            </div>
+          </div>
+
+          <!-- Правая панель — участники -->
+          <aside id="membersPanel">
+            <div class="members-header">Участники — <span id="membersCount">0</span></div>
+            <div id="membersList"></div>
+
+            <!-- Панель голосового канала -->
+            <div id="voicePanel" class="voice-panel" style="display: none">
+              <div class="voice-status">🎤 В голосовом канале</div>
+              <div class="voice-controls">
+                <button id="muteBtn" class="voice-btn" title="Мут">🎤</button>
+                <button id="screenShareBtn" class="voice-btn" title="Демонстрация экрана">🖥️</button>
+                <button id="leaveVoiceBtn" class="voice-btn voice-btn-leave" title="Выйти">📞</button>
+              </div>
+              <!-- Элемент для демонстрации экрана -->
+              <video id="screenVideo" autoplay playsinline style="display: none; width: 100%; border-radius: 8px; margin-top: 8px"></video>
+            </div>
+            <button id="joinVoiceBtn" class="join-voice-btn" onclick="window.joinVoice()">🎤 Войти в голосовой</button>
+          </aside>
+        </div>
+      </main>
+    </div>
+
+    <!-- Discord-style модальное окно голосового звонка -->
+    <div id="voiceCallModal" class="voice-call-modal" style="display: none">
+      <div class="voice-call-content">
+        <div class="voice-call-header">
+          <span class="voice-call-title">🔊 Голосовой канал</span>
+          <span id="callDuration" class="call-duration">00:00</span>
+        </div>
+        <div id="voiceParticipants" class="voice-participants-grid"></div>
+        <div id="voiceScreenShareContainer" class="voice-screen-share" style="display: none"></div>
+        <div class="voice-call-actions">
+          <button id="callMuteBtn" class="voice-action-btn" title="Мут">
+            <span class="btn-icon" id="callMuteIcon">🎤</span>
+            <span class="btn-label">Мут</span>
+          </button>
+          <button id="callScreenShareBtn" class="voice-action-btn" title="Демонстрация экрана">
+            <span class="btn-icon" id="callScreenIcon">🖥️</span>
+            <span class="btn-label">Экран</span>
+          </button>
+          <button id="callLeaveBtn" class="voice-action-btn voice-leave-btn" title="Выйти из звонка">
+            <span class="btn-icon">📞</span>
+            <span class="btn-label">Выйти</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Модалка создания сервера -->
+    <div id="createServerModal" class="modal hidden">
+      <div class="modal-content">
+        <h2>Создать сервер</h2>
+        <input id="newServerName" type="text" placeholder="Название сервера" />
+        <div class="modal-actions">
+          <button id="createServerBtn">Создать</button>
+          <button id="cancelServerBtn" class="btn-secondary">Отмена</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Модалка приглашения -->
+    <div id="inviteModal" class="modal hidden">
+      <div class="modal-content">
+        <h2>Пригласить на сервер</h2>
+        <input id="inviteServerId" type="text" placeholder="ID сервера (например: srv_abc123)" />
+        <div class="modal-actions">
+          <button id="inviteJoinBtn">Вступить</button>
+          <button id="inviteCancelBtn" class="btn-secondary">Отмена</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Модалка создания канала -->
+    <div id="createChannelModal" class="modal hidden">
+      <div class="modal-content">
+        <h2>Создать канал</h2>
+        <input id="newChannelName" type="text" placeholder="Название канала" />
+        <div class="modal-actions">
+          <button id="createChannelSubmitBtn">Создать</button>
+          <button id="cancelChannelBtn" class="btn-secondary">Отмена</button>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="../js/theme.js"></script>
+    <script type="module" src="../js/server.js"></script>
+  </body>
+</html>
